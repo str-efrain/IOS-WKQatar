@@ -16,10 +16,14 @@ struct MatchesView: View {
         List(wkDataStore.getMatchesInStadium(stadium: selectedStadium), id: \.self, selection: $selectedMatch) { match in
             Grid {
                 GridRow {
-                    
+                    Text(match.hometeam)
+                    Text("X")
+                    Text(match.awayteam)
                 }
                 GridRow {
-                    
+                    Text(match.homescore)
+                    Tex("-")
+                    Text(match.awayscore)
                 }
             }
         }
