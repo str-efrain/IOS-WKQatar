@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct StartSchermView: View {
-    @Binding var wkDataStore: WKDataStore
-    var countries = wkDataStore.getAllCountries()
+    @State var selectedCountry: String?
+    @Environment(WKDataStore.self) var wkDataStore
     var body: some View {
         VStack{
             HStack{
@@ -18,7 +18,18 @@ struct StartSchermView: View {
                 Image(systemName: "soccerball").foregroundStyle(.tint)
             }
             Text("Select your favourite team...")
-            List(wkDataStore.getAllCountries(), id: \.self, selection: )
+            List(wkDataStore.getAllCountries(), id: \.self, selection: $selectedCountry) { country in
+                if country == selectedCountry {
+                    Text(country).foregroundStyle(.red)
+                } else {
+                    Text(country)
+                }
+            }
+            NavigationLink("Next"){
+                if let selectedCountry = selectedCountry {
+                    CountryMatchesView(selectedCountry: selectedCountry)
+                }
+            }
         }
     }
 }

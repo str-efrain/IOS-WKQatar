@@ -17,11 +17,31 @@ class WKDataStore{
     }
     
     public func getAllCountries() -> [String]{
-        var countries: [String]
+        var countries: [String] = []
         for result in WKResults {
-            countries.append(result.homeTeam)
+            if result.roundNumber == 1 {
+                countries.append(result.homeTeam)
+            }
         }
         return Array(Set(countries)).sorted()
+    }
+    
+    public func getAllStadiums() -> [String]{
+        var stadiums: [String] = []
+        for result in WKResults {
+            stadiums.append(result.location)
+        }
+        return Array(Set(stadiums)).sorted()
+    }
+    
+    public func getMatchesInStadium(stadium: String) -> [WKResult] {
+        var matches: [WKResult] = []
+        for result in WKResults {
+            if result.location == stadium {
+                matches.append(result)
+            }
+        }
+        return matches
     }
 }
 

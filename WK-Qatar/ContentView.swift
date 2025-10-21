@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(WKDataStore.self) var wkDataStore
     var body: some View {
         NavigationStack(root: {
-            StartSchermView($wkDataStore)
+            StartSchermView()
         })
         .padding()
     }
