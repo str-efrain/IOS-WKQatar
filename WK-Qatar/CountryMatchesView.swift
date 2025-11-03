@@ -21,7 +21,11 @@ struct CountryMatchesView: View {
                 Text("Please select a stadium")
             }
         } detail: {
-            GameDetailView()
+            if let selectedMatch = selectedMatch {
+                GameDetailView(selectedMatch: selectedMatch)
+            } else {
+                Text("Please select a match")
+            }
         }
     }
 }

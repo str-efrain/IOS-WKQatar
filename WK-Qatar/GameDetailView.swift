@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct GameDetailView: View {
+    var selectedMatch: WKResult
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(selectedMatch.dateUTC).bold()
+            Text(selectedMatch.location).font(.title).padding(10)
+            Grid{
+                GridRow {
+                    Text(selectedMatch.homeTeam)
+                    Text("X")
+                    Text(selectedMatch.awayTeam)
+                }
+                GridRow{
+                    if selectedMatch.homeTeamScore == nil {
+                        Text("TBD")
+                        Text("-")
+                        Text("TBD")
+                    } else {
+                        Text("\(selectedMatch.homeTeamScore!)")
+                        Text("-")
+                        Text("\(selectedMatch.awayTeamScore!)")
+                    }
+                }
+            }
+            Spacer()
+            Text("Round: \(selectedMatch.roundNumber)")
+            Text("Group: \(selectedMatch.group!)")
+            Spacer()
+        }
     }
 }
 
-#Preview {
-    GameDetailView()
-}
