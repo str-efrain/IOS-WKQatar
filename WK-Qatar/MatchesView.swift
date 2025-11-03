@@ -41,8 +41,5 @@ struct MatchesView: View {
                 }
             }
         }
-        Text(selectedStadium)
     }
 }
-
-
